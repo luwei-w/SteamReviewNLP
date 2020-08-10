@@ -6,10 +6,10 @@ from scipy.sparse import lil_matrix
 from sklearn.feature_extraction.text import TfidfTransformer
 
 
-FREQ_DIST_FILE = '../data/train-processed-freqdist.pkl'
-BI_FREQ_DIST_FILE = '../data/train-processed-freqdist-bi.pkl'
-TRAIN_PROCESSED_FILE = '../data/train-processed.csv'
-TEST_PROCESSED_FILE = '../data/test-processed.csv'
+FREQ_DIST_FILE = '../dataset/train-processed-freqdist.pkl'
+BI_FREQ_DIST_FILE = '../dataset/train-processed-freqdist-bi.pkl'
+TRAIN_PROCESSED_FILE = '../dataset/train-processed.csv'
+TEST_PROCESSED_FILE = '../dataset/test-processed.csv'
 TRAIN = True
 UNIGRAM_SIZE = 15000
 VOCAB_SIZE = UNIGRAM_SIZE

@@ -109,7 +109,7 @@ if __name__ == '__main__':
         pickle.dump(bigram_freq_dist, pkl_file)
     print ('Saved bi-frequency distribution to %s' % bi_pkl_file_name)
     print ('\n[Analysis Statistics]')
-    print ('Tweets => Total: %d, Very Positive: %d, Positive: %d, Neural: %d, Negative: %d, Very Negative: %d' % (num_tweets, num_xpos_tweets, num_pos_tweets, num_neu_tweets, num_neg_tweets, num_xneg_tweets))
+    print ('Reviews => Total: %d, Very Positive: %d, Positive: %d, Neural: %d, Negative: %d, Very Negative: %d' % (num_tweets, num_xpos_tweets, num_pos_tweets, num_neu_tweets, num_neg_tweets, num_xneg_tweets))
     print ('User Mentions => Total: %d, Avg: %.4f, Max: %d' % (num_mentions, num_mentions / float(num_tweets), max_mentions))
     print ('URLs => Total: %d, Avg: %.4f, Max: %d' % (num_urls, num_urls / float(num_tweets), max_urls))
     print ('Emojis => Total: %d, Positive: %d, Negative: %d, Avg: %.4f, Max: %d' % (num_emojis, num_pos_emojis, num_neg_emojis, num_emojis / float(num_tweets), max_emojis))

@@ -24,8 +24,8 @@ In your terminal, input the following commands.
 
 The step 2 outputs a file called train-processed.csv. The step 3 outputs 3 files which are train-processed-freqdist-bi.pkl, train-processed-freqdist.pkl, train-processed-unique.txt. To run step 4 or 5 depends on which method you choose. 
 
-In preprocess.py, there is a boolean variable called "test_file" in the function "preprocess_csv()", when preprocessing training dataset, you should assign it "TRUE", when preprocessing test dataset, assign it "FALSE". 
+In preprocess.py, there is a boolean variable called "test_file" in the function "preprocess_csv()", when preprocessing training dataset, you should assign it "False", when preprocessing test dataset, assign it "True". 
 
 We do not need to apply stats.py on test dataset. Because we only use frequency distribution of training dataset dictionary.
 
-In svm.py and naivebayes.py, there is a global boolean variable called "TRAIN", when training the model, you should assign it "TRUE", when predicting the test dataset, you should assign it "FALSE". After prediction, svm.py will output the prediction result file "svm.csv" in folder "code", naivebayes.py will output "naivebayes.csv".
+In svm.py and naivebayes.py, there is a global boolean variable called "TRAIN", when training the model, you should assign it "True", when predicting the test dataset, you should assign it "False". After prediction, svm.py will output the prediction result file "svm.csv" in folder "code", naivebayes.py will output "naivebayes.csv".

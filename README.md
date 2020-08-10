@@ -22,7 +22,7 @@ In your terminal, input the following commands.
 
 5. python3 naivebayes.py
 
-The step 2 outputs a file called train-processed.csv. The step 3 outputs 3 files which are train-processed-freqdist-bi.pkl, train-processed-freqdist.pkl, train-processed-unique.txt. Step 4 and 5 depends on which method you choose. 
+The step 2 outputs a file called train-processed.csv. The step 3 outputs 3 files which are train-processed-freqdist-bi.pkl, train-processed-freqdist.pkl, train-processed-unique.txt. To run step 4 or 5 depends on which method you choose. 
 
 In preprocess.py, there is a boolean variable called "test_file" in the function "preprocess_csv()", when preprocessing training dataset, you should assign it "TRUE", when preprocessing test dataset, assign it "FALSE". 
 

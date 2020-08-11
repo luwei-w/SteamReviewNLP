@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.stats import gaussian_kde
+
 
 pre = pd.read_csv("../dataset/svm.csv")
 pred = pre["prediction"].to_numpy()
@@ -58,13 +60,16 @@ num_xpos_score_1 = len(xpos.loc[xpos["weighted_vote_score"]<1/3])
 num_xpos_score_2 = len(xpos.loc[(1/3 <= xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<2/3)])
 num_xpos_score_3 = len(xpos.loc[(2/3<=xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<=1)])
 
+score = np.array([[num_xneg_score_3, num_neg_score_3, num_neural_score_3, num_pos_score_3, num_xpos_score_3],
+	[num_xneg_score_2, num_neg_score_2, num_neural_score_2, num_pos_score_2, num_xpos_score_2],
+	[num_xneg_score_1, num_neg_score_1, num_neural_score_1, num_pos_score_1, num_xpos_score_1]])
+
+
 sentiment_value = [0,1,2,3,4]
+weighted_vote_score = [1, 0.5, 0]
 frac_recommend = [frac_recommend_xneg, frac_recommend_neg, frac_recommend_neural, frac_recommend_pos, frac_recommend_xpos]
 
-
-
-
-
+#bar plot of (sentiment value, percentage of recommendation)
 fig = plt.figure()
 ax = fig.add_subplot(111)
 width = 0.5
@@ -76,5 +81,28 @@ plt.ylabel('Percentage of Recommendation')
 for i,j in zip(sentiment_value,frac_recommend):
     ax.annotate(str(j),xy=(i-0.1,j))
 plt.show()
-fig = plt.figure()
 
+
+#heatmap
+
+fig, ax = plt.subplots()
+im = ax.imshow(score)
+
+# We want to show all ticks...
+ax.set_xticks(np.arange(len(sentiment_value)))
+ax.set_yticks(np.arange(len(weighted_vote_score)))
+# ... and label them with the respective list entries
+ax.set_xticklabels(sentiment_value)
+ax.set_yticklabels(weighted_vote_score)
+ax.set_xlabel("Sentiment Value")
+ax.set_ylabel("Weighted Vote Score")
+
+# Loop over data dimensions and create text annotations.
+for i in range(len(weighted_vote_score)):
+	for j in range(len(sentiment_value)):
+		text = ax.text(j,i, score[i, j],
+                       ha="center", va="center", color="w")
+
+ax.set_title("The number of reviews")
+fig.tight_layout()
+plt.show()

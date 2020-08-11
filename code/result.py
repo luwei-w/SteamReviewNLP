@@ -2,13 +2,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import gaussian_kde
-
-
 LOW = 1/3
 HIGH = 2/3
 
+PREDICTION = "../dataset/svm.csv"
 
-pre = pd.read_csv("../dataset/svm.csv")
+pre = pd.read_csv(PREDICTION)
 pred = pre["prediction"].to_numpy()
 
 info = pd.read_csv("../dataset/cleaned_data.csv")

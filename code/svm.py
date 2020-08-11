@@ -1,10 +1,10 @@
-from sklearn import svm
+from sklearn.svm import LinearSVC
 import utils
 import random
 import numpy as np
 from scipy.sparse import lil_matrix
 from sklearn.feature_extraction.text import TfidfTransformer
-
+from sklearn.multiclass import OneVsRestClassifier
 
 FREQ_DIST_FILE = '../dataset/train-processed-freqdist.pkl'
 BI_FREQ_DIST_FILE = '../dataset/train-processed-freqdist-bi.pkl'
@@ -119,8 +119,7 @@ if __name__ == '__main__':
         train_tweets = tweets
     del tweets
     print ('Extracting features & training batches')
-    clf = svm.LinearSVC(C=0.1)
-    #clf = svm.SVC(decision_function_shape="ovr")
+    clf = OneVsRestClassifier(LinearSVC(C=0.5))
     batch_size = len(train_tweets)
     i = 1
     n_train_batches = int(np.ceil(len(train_tweets) / float(batch_size)))

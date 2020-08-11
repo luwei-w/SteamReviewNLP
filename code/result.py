@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 from scipy.stats import gaussian_kde
 
 
+LOW = 1/3
+HIGH = 2/3
+
+
 pre = pd.read_csv("../dataset/svm.csv")
 pred = pre["prediction"].to_numpy()
 
@@ -11,7 +15,6 @@ info = pd.read_csv("../dataset/cleaned_data.csv")
 value = info["weighted_vote_score"].to_numpy()
 
 if_reco=info["voted_up"].to_numpy()#1-recommend, 0-not recommend
-
 
 info["sentiment"] = pred
 
@@ -40,30 +43,31 @@ frac_recommend_neural = round(num_recommend_neural/len_neural, 2)
 frac_recommend_pos = round(num_recommend_pos/len_pos, 2)
 frac_recommend_xpos = round(num_recommend_xpos/len_xpos, 2)
 
-num_xneg_score_1 = len(xneg.loc[xneg["weighted_vote_score"]<1/3])
-num_xneg_score_2 = len(xneg.loc[(1/3 <= xneg["weighted_vote_score"]) & (xneg["weighted_vote_score"]<2/3)])
-num_xneg_score_3 = len(xneg.loc[(2/3<=xneg["weighted_vote_score"]) & (xneg["weighted_vote_score"]<=1)])
+num_xneg_score_1 = len(xneg.loc[xneg["weighted_vote_score"]<LOW])
+num_xneg_score_2 = len(xneg.loc[(LOW <= xneg["weighted_vote_score"]) & (xneg["weighted_vote_score"]<HIGH)])
+num_xneg_score_3 = len(xneg.loc[(HIGH<=xneg["weighted_vote_score"]) & (xneg["weighted_vote_score"]<=1)])
 
-num_neg_score_1 = len(neg.loc[neg["weighted_vote_score"]<1/3])
-num_neg_score_2 = len(neg.loc[(1/3 <= neg["weighted_vote_score"]) & (neg["weighted_vote_score"]<2/3)])
-num_neg_score_3 = len(neg.loc[(2/3<=neg["weighted_vote_score"]) & (neg["weighted_vote_score"]<=1)])
+num_neg_score_1 = len(neg.loc[neg["weighted_vote_score"]<LOW])
+num_neg_score_2 = len(neg.loc[(LOW <= neg["weighted_vote_score"]) & (neg["weighted_vote_score"]<HIGH)])
+num_neg_score_3 = len(neg.loc[(HIGH<=neg["weighted_vote_score"]) & (neg["weighted_vote_score"]<=1)])
 
-num_neural_score_1 = len(neural.loc[neural["weighted_vote_score"]<1/3])
-num_neural_score_2 = len(neural.loc[(1/3 <= neural["weighted_vote_score"]) & (neural["weighted_vote_score"]<2/3)])
-num_neural_score_3 = len(neural.loc[(2/3<=neural["weighted_vote_score"]) & (neural["weighted_vote_score"]<=1)])
+num_neural_score_1 = len(neural.loc[neural["weighted_vote_score"]<LOW])
+num_neural_score_2 = len(neural.loc[(LOW <= neural["weighted_vote_score"]) & (neural["weighted_vote_score"]<HIGH)])
+num_neural_score_3 = len(neural.loc[(HIGH<=neural["weighted_vote_score"]) & (neural["weighted_vote_score"]<=1)])
 
-num_pos_score_1 = len(pos.loc[pos["weighted_vote_score"]<1/3])
-num_pos_score_2 = len(pos.loc[(1/3 <= pos["weighted_vote_score"]) & (pos["weighted_vote_score"]<2/3)])
-num_pos_score_3 = len(pos.loc[(2/3<=pos["weighted_vote_score"]) & (pos["weighted_vote_score"]<=1)])
+num_pos_score_1 = len(pos.loc[pos["weighted_vote_score"]<LOW])
+num_pos_score_2 = len(pos.loc[(LOW <= pos["weighted_vote_score"]) & (pos["weighted_vote_score"]<HIGH)])
+num_pos_score_3 = len(pos.loc[(HIGH<=pos["weighted_vote_score"]) & (pos["weighted_vote_score"]<=1)])
 
-num_xpos_score_1 = len(xpos.loc[xpos["weighted_vote_score"]<1/3])
-num_xpos_score_2 = len(xpos.loc[(1/3 <= xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<2/3)])
-num_xpos_score_3 = len(xpos.loc[(2/3<=xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<=1)])
+num_xpos_score_1 = len(xpos.loc[xpos["weighted_vote_score"]<LOW])
+num_xpos_score_2 = len(xpos.loc[(LOW <= xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<HIGH)])
+num_xpos_score_3 = len(xpos.loc[(HIGH<=xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<=1)])
 
 score = np.array([[num_xneg_score_3, num_neg_score_3, num_neural_score_3, num_pos_score_3, num_xpos_score_3],
 	[num_xneg_score_2, num_neg_score_2, num_neural_score_2, num_pos_score_2, num_xpos_score_2],
 	[num_xneg_score_1, num_neg_score_1, num_neural_score_1, num_pos_score_1, num_xpos_score_1]])
 
+print(xpos.loc[(HIGH<=xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<=1)]["weighted_vote_score"])
 
 sentiment_value = [0,1,2,3,4]
 weighted_vote_score = [1, 0.5, 0]

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 pre = pd.read_csv("../dataset/svm.csv")
 pred = pre["prediction"].to_numpy()
 
-info = pd.read_csv("../dataset/cleansteam.csv")
+info = pd.read_csv("../dataset/cleaned_data.csv")
 value = info["weighted_vote_score"].to_numpy()
 
 fig = plt.figure()

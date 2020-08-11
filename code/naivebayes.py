@@ -127,7 +127,7 @@ if __name__ == '__main__':
         if FEAT_TYPE == 'frequency':
             tfidf = apply_tf_idf(training_set_X)
             training_set_X = tfidf.transform(training_set_X)
-        clf.partial_fit(training_set_X, training_set_y, classes=[1, 2, 3, 4, 5])
+        clf.partial_fit(training_set_X, training_set_y, classes=[0, 1, 2, 3, 4])
     print ('\n')
     print ('Testing')
     if TRAIN:

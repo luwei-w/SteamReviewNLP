@@ -66,7 +66,7 @@ score = np.array([[num_xneg_score_3, num_neg_score_3, num_neural_score_3, num_po
 	[num_xneg_score_2, num_neg_score_2, num_neural_score_2, num_pos_score_2, num_xpos_score_2],
 	[num_xneg_score_1, num_neg_score_1, num_neural_score_1, num_pos_score_1, num_xpos_score_1]])
 
-print(xpos.loc[(HIGH<=xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<=1)]["weighted_vote_score"])
+#print(xpos.loc[(HIGH<=xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<=1)]["weighted_vote_score"])
 
 sentiment_value = [0,1,2,3,4]
 weighted_vote_score = [1, 0.5, 0]

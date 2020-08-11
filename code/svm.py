@@ -161,5 +161,5 @@ if __name__ == '__main__':
             i += 1
         predictions = [(str(j), int(predictions[j]))
                        for j in range(len(test_tweets))]
-        utils.save_results_to_csv(predictions, 'svm.csv')
+        utils.save_results_to_csv(predictions, '../dataset/svm.csv')
         print ('\nSaved to svm.csv')

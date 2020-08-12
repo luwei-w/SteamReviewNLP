@@ -36,11 +36,29 @@ num_recommend_neural =len(neural.loc[neural["voted_up"] == 1])
 num_recommend_pos = len(pos.loc[pos["voted_up"]==1])
 num_recommend_xpos = len(xpos.loc[xpos["voted_up"]==1])
 
-frac_recommend_xneg = round(num_recommend_xneg/len_xneg, 4)*100
-frac_recommend_neg = round(num_recommend_neg/len_neg, 4)*100
-frac_recommend_neural = round(num_recommend_neural/len_neural, 4)*100
-frac_recommend_pos = round(num_recommend_pos/len_pos, 4)*100
-frac_recommend_xpos = round(num_recommend_xpos/len_xpos, 4)*100
+sentiment_value1 = []
+frac_recommend = []
+
+if len_xneg!= 0:
+	frac_recommend_xneg = round(num_recommend_xneg/len_xneg, 2)*100
+	sentiment_value1.append(0)
+	frac_recommend.append(frac_recommend_xneg)
+if len_neg != 0:
+	frac_recommend_neg = round(Decimal(num_recommend_neg/len_neg), 2)*100
+	sentiment_value1.append(1)
+	frac_recommend.append(frac_recommend_neg)
+if len_neural != 0:
+	frac_recommend_neural = round(num_recommend_neural/len_neural,2)*100 
+	sentiment_value1.append(2)
+	frac_recommend.append(frac_recommend_neural)
+if len_pos != 0:
+	frac_recommend_pos = round(num_recommend_pos/len_pos, 2)*100
+	sentiment_value1.append(3)
+	frac_recommend.append(frac_recommend_pos)
+if len_xpos !=0:
+	frac_recommend_xpos = round(num_recommend_xpos/len_xpos, 2)*100
+	sentiment_value1.append(4)
+	frac_recommend.append(frac_recommend_xpos)
 
 num_xneg_score_1 = len(xneg.loc[xneg["weighted_vote_score"]<LOW])
 num_xneg_score_2 = len(xneg.loc[(LOW <= xneg["weighted_vote_score"]) & (xneg["weighted_vote_score"]<HIGH)])
@@ -67,26 +85,24 @@ score = np.array([[num_xneg_score_3, num_neg_score_3, num_neural_score_3, num_po
 	[num_xneg_score_1, num_neg_score_1, num_neural_score_1, num_pos_score_1, num_xpos_score_1]])
 
 
-sentiment_value = [0,1,2,3,4]
-weighted_vote_score = [1, 0.5, 0]
-frac_recommend = [frac_recommend_xneg, frac_recommend_neg, frac_recommend_neural, frac_recommend_pos, frac_recommend_xpos]
 
 #bar plot of (sentiment value, percentage of recommendation)
 fig = plt.figure()
 ax = fig.add_subplot(111)
 width = 0.5
-plt.bar(sentiment_value, frac_recommend, width)
+plt.bar(sentiment_value1, frac_recommend, width)
 
 plt.xticks(np.arange(0,5,step = 1))
 plt.xlabel('Sentiment Value')
 plt.ylabel('Percentage of Recommendation(%)')
-for i,j in zip(sentiment_value,frac_recommend):
+for i,j in zip(sentiment_value1,frac_recommend):
     ax.annotate(str(j),xy=(i-0.2,j))
 plt.show()
 
 
 #heatmap
-
+sentiment_value = [0,1,2,3,4]
+weighted_vote_score = [1, 0.5, 0]
 fig, ax = plt.subplots()
 im = ax.imshow(score)
 

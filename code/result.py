@@ -36,11 +36,11 @@ num_recommend_neural =len(neural.loc[neural["voted_up"] == 1])
 num_recommend_pos = len(pos.loc[pos["voted_up"]==1])
 num_recommend_xpos = len(xpos.loc[xpos["voted_up"]==1])
 
-frac_recommend_xneg = round(num_recommend_xneg/len_xneg, 2)
-frac_recommend_neg = round(num_recommend_neg/len_neg, 2)
-frac_recommend_neural = round(num_recommend_neural/len_neural, 2)
-frac_recommend_pos = round(num_recommend_pos/len_pos, 2)
-frac_recommend_xpos = round(num_recommend_xpos/len_xpos, 2)
+frac_recommend_xneg = round(num_recommend_xneg/len_xneg, 4)*100
+frac_recommend_neg = round(num_recommend_neg/len_neg, 4)*100
+frac_recommend_neural = round(num_recommend_neural/len_neural, 4)*100
+frac_recommend_pos = round(num_recommend_pos/len_pos, 4)*100
+frac_recommend_xpos = round(num_recommend_xpos/len_xpos, 4)*100
 
 num_xneg_score_1 = len(xneg.loc[xneg["weighted_vote_score"]<LOW])
 num_xneg_score_2 = len(xneg.loc[(LOW <= xneg["weighted_vote_score"]) & (xneg["weighted_vote_score"]<HIGH)])
@@ -66,7 +66,6 @@ score = np.array([[num_xneg_score_3, num_neg_score_3, num_neural_score_3, num_po
 	[num_xneg_score_2, num_neg_score_2, num_neural_score_2, num_pos_score_2, num_xpos_score_2],
 	[num_xneg_score_1, num_neg_score_1, num_neural_score_1, num_pos_score_1, num_xpos_score_1]])
 
-#print(xpos.loc[(HIGH<=xpos["weighted_vote_score"]) & (xpos["weighted_vote_score"]<=1)]["weighted_vote_score"])
 
 sentiment_value = [0,1,2,3,4]
 weighted_vote_score = [1, 0.5, 0]
@@ -80,9 +79,9 @@ plt.bar(sentiment_value, frac_recommend, width)
 
 plt.xticks(np.arange(0,5,step = 1))
 plt.xlabel('Sentiment Value')
-plt.ylabel('Percentage of Recommendation')
+plt.ylabel('Percentage of Recommendation(%)')
 for i,j in zip(sentiment_value,frac_recommend):
-    ax.annotate(str(j),xy=(i-0.1,j))
+    ax.annotate(str(j),xy=(i-0.2,j))
 plt.show()
 
 
@@ -106,6 +105,6 @@ for i in range(len(weighted_vote_score)):
 		text = ax.text(j,i, score[i, j],
                        ha="center", va="center", color="w")
 
-ax.set_title("The number of reviews")
+#ax.set_title("The number of reviews")
 fig.tight_layout()
 plt.show()

@@ -28,4 +28,4 @@ In preprocess.py, there is a boolean variable called "test_file" in the function
 
 We do not need to apply stats.py on test dataset. Because we only use frequency distribution of training dataset dictionary.
 
-In svm.py and naivebayes.py, there is a global boolean variable called "TRAIN", when training the model, you should assign it "True", when predicting the test dataset, you should assign it "False". After prediction, svm.py will output the prediction result file "svm.csv" in folder "code", naivebayes.py will output "naivebayes.csv".
+In svm.py and naivebayes.py, there is a global boolean variable called "TRAIN", when training the model, you should assign it "True", when predicting the test dataset, you should assign it "False". After prediction, svm.py will output the prediction result file "svm.csv" in folder "dataset", naivebayes.py will output "naivebayes.csv".

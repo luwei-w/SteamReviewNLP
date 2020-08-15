@@ -44,7 +44,7 @@ if len_xneg!= 0:
 	sentiment_value1.append(0)
 	frac_recommend.append(frac_recommend_xneg)
 if len_neg != 0:
-	frac_recommend_neg = round(Decimal(num_recommend_neg/len_neg), 2)*100
+	frac_recommend_neg = round(num_recommend_neg/len_neg, 2)*100
 	sentiment_value1.append(1)
 	frac_recommend.append(frac_recommend_neg)
 if len_neural != 0:
